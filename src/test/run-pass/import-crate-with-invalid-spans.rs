@@ -18,5 +18,6 @@ fn main() {
     // The AST of `exported_generic` stored in crate_with_invalid_spans's
     // metadata should contain an invalid span where span.lo > span.hi.
     // Let's make sure the compiler doesn't crash when encountering this.
-    let _ = crate_with_invalid_spans::exported_generic(32u32, 7u32);
+    let (a, b) = crate_with_invalid_spans::exported_generic(32u32, 7u32);
+    assert_eq!((a, b), (32u32, 8 + 8 - 1));
 }
